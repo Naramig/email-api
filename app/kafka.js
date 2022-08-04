@@ -18,7 +18,7 @@ exports.init = async () => {
 
         exports.consumer.subscribe(
             {
-                "topic": KAFKA_CLIENT_TOPIC,
+                "topic": process.env.KAFKA_CLIENT_TOPIC,
                 "fromBeginning": true
             }
         );
