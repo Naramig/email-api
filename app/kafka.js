@@ -6,7 +6,7 @@ exports.consumer = null;
 exports.init = async () => {
     try {
         const kafka = new Kafka({
-            "clientId": "myapp",
+            "clientId": process.env.KAFKA_CLIENT_ID,
             "brokers": [process.env.KAFKA_URL],
             "ssl": false
         })
@@ -18,7 +18,7 @@ exports.init = async () => {
 
         exports.consumer.subscribe(
             {
-                "topic": "Users",
+                "topic": KAFKA_CLIENT_TOPIC,
                 "fromBeginning": true
             }
         );
@@ -40,6 +40,7 @@ async function run() {
             } catch (e) {
                 console.log(e);
             }
+            //sleep for one second before the next email
             await sleep(1000)
         }
     })
